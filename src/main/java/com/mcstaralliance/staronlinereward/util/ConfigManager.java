@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 玩家数据文件结构：
@@ -93,5 +94,14 @@ public class ConfigManager {
         LocalDate today = LocalDate.now();
         data.set("last_login", today.toEpochDay());
         data.save(getPlayerFile(player));
+    }
+
+    public static int getCondition(int stage) {
+        Set<Integer> rewards = RewardUtil.getRewards();
+        int condition = 0;
+        for (int i = 0; i < stage; i++) {
+            condition = rewards.iterator().next();
+        }
+        return condition;
     }
 }

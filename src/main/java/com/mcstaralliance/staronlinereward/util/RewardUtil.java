@@ -22,12 +22,14 @@ public class RewardUtil {
         FileConfiguration config = plugin.getConfig();
         String stageKey = String.valueOf(stage);
         List<String> commands = config.getStringList(stageKey + ".commands").stream()
-                .map(command -> command.replace("%player", player.getName()))
+                .map(command -> command.replace("%player%", player.getName()))
                 .collect(Collectors.toList());
         for (String command : commands) {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
         }
         // 记录今日已领取奖励次数
         ConfigManager.setRewardStage(player, stage);
+        int time = ConfigManager.getCondition(stage);
+        player.sendMessage("你已在线 " + time + " 分钟，奖励已自动发放。");
     }
 }
