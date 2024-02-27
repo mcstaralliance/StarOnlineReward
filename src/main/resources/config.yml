@@ -1,3 +1,6 @@
 30:
   commands:
     - 'say 30 min bonus'
+60:
+  commands:
+    - 'say 60 min bonus'

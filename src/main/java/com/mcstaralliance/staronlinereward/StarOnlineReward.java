@@ -5,6 +5,7 @@ import com.mcstaralliance.staronlinereward.task.ClearDailyDataTask;
 import com.mcstaralliance.staronlinereward.task.OnlineTimeCounter;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import java.time.Duration;
 import java.time.LocalTime;
@@ -16,6 +17,10 @@ public final class StarOnlineReward extends JavaPlugin {
     public static StarOnlineReward getInstance() {
         return instance;
     }
+
+    public static int clearDailyDataTaskId;
+    public static int onlineTimeCounterTaskId;
+    public static int checkRewardConditionTaskId;
 
     public long getTicksUtilMidnight() {
         LocalTime now = LocalTime.now();
@@ -37,12 +42,22 @@ public final class StarOnlineReward extends JavaPlugin {
         // 使用Bukkit调度器安排一个重复执行任务，在距离午夜的秒数后执行一次，并且每隔一天执行一次
         // 间隔一天（20刻/秒 * 60秒 * 60分 * 24小时）
         clearDailyDataTask.runTaskTimerAsynchronously(this, getTicksUtilMidnight(), 20 * 60 * 60 * 24);
-        onlineTimeCounter.runTaskTimerAsynchronously(this, 0, 60L);
-        checkRewardCondition.runTaskTimerAsynchronously(this, 0, 60L);
+        onlineTimeCounter.runTaskTimer(this, 0, 1200L);
+        checkRewardCondition.runTaskTimer(this, 0, 1200L);
+        clearDailyDataTaskId = clearDailyDataTask.getTaskId();
+        onlineTimeCounterTaskId = onlineTimeCounter.getTaskId();
+        checkRewardConditionTaskId = checkRewardCondition.getTaskId();
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        cancelTasks();
+    }
+
+    public void cancelTasks() {
+        BukkitScheduler scheduler = getServer().getScheduler();
+        scheduler.cancelTask(clearDailyDataTaskId);
+        scheduler.cancelTask(onlineTimeCounterTaskId);
+        scheduler.cancelTask(checkRewardConditionTaskId);
     }
 }

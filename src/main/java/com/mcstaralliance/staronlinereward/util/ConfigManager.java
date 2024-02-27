@@ -97,11 +97,11 @@ public class ConfigManager {
     }
 
     public static int getCondition(int stage) {
-        Set<Integer> rewards = RewardUtil.getRewards();
-        int condition = 0;
-        for (int i = 0; i < stage; i++) {
-            condition = rewards.iterator().next();
+        List<Integer> rewards = RewardUtil.getRewards();
+        if (stage > rewards.size()) {
+            return Integer.MAX_VALUE;
         }
-        return condition;
+        int stageIndex = stage - 1; // stage - 1 是 stage 在列表里的索引
+        return rewards.get(stageIndex);
     }
 }
