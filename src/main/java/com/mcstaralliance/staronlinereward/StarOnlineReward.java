@@ -1,8 +1,10 @@
 package com.mcstaralliance.staronlinereward;
 
+import com.mcstaralliance.staronlinereward.listener.PlayerJoinListener;
 import com.mcstaralliance.staronlinereward.task.CheckRewardCondition;
 import com.mcstaralliance.staronlinereward.task.ClearDailyDataTask;
 import com.mcstaralliance.staronlinereward.task.OnlineTimeCounter;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -36,6 +38,7 @@ public final class StarOnlineReward extends JavaPlugin {
     public void onEnable() {
         instance = this;
         saveDefaultConfig();
+        Bukkit.getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
         BukkitRunnable clearDailyDataTask = new ClearDailyDataTask();
         BukkitRunnable onlineTimeCounter = new OnlineTimeCounter();
         BukkitRunnable checkRewardCondition = new CheckRewardCondition();
