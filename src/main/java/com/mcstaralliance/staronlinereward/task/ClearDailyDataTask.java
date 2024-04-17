@@ -1,6 +1,5 @@
 package com.mcstaralliance.staronlinereward.task;
 
-import com.mcstaralliance.staronlinereward.StarOnlineReward;
 import com.mcstaralliance.staronlinereward.util.ConfigManager;
 import org.bukkit.scheduler.BukkitRunnable;
 

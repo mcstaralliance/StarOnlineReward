@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * 玩家数据文件结构：
@@ -65,7 +64,7 @@ public class ConfigManager {
     public static void createPlayerConfig(Player player) {
         createDataDir();
 
-        File file = new File(plugin.getDataFolder(), player.getName() + ".yml");
+        File file = new File(getDataDir(), player.getName() + ".yml");
         if (!file.exists()) {
             try {
                 if (!file.createNewFile()) {
