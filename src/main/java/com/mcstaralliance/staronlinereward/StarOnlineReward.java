@@ -44,7 +44,7 @@ public final class StarOnlineReward extends JavaPlugin {
         BukkitRunnable checkRewardCondition = new CheckRewardCondition();
         // 使用Bukkit调度器安排一个重复执行任务，在距离午夜的秒数后执行一次，并且每隔一天执行一次
         // 间隔一天（20刻/秒 * 60秒 * 60分 * 24小时）
-        clearDailyDataTask.runTaskTimerAsynchronously(this, getTicksUtilMidnight(), 20 * 60 * 60 * 24);
+        clearDailyDataTask.runTaskTimer(this, getTicksUtilMidnight(), 20 * 60 * 60 * 24);
         onlineTimeCounter.runTaskTimer(this, 0, 1200L);
         checkRewardCondition.runTaskTimer(this, 0, 1200L);
         clearDailyDataTaskId = clearDailyDataTask.getTaskId();
