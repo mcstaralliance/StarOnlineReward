@@ -2,3 +2,6 @@ name: StarOnlineReward
 version: '${project.version}'
 main: com.mcstaralliance.staronlinereward.StarOnlineReward
 api-version: '1.18'
+
+commands:
+  sor:

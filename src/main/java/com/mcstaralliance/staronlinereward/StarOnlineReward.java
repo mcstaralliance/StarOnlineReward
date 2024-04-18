@@ -1,5 +1,6 @@
 package com.mcstaralliance.staronlinereward;
 
+import com.mcstaralliance.staronlinereward.command.ReloadCommand;
 import com.mcstaralliance.staronlinereward.listener.PlayerJoinListener;
 import com.mcstaralliance.staronlinereward.task.CheckRewardCondition;
 import com.mcstaralliance.staronlinereward.task.ClearDailyDataTask;
@@ -50,6 +51,7 @@ public final class StarOnlineReward extends JavaPlugin {
         clearDailyDataTaskId = clearDailyDataTask.getTaskId();
         onlineTimeCounterTaskId = onlineTimeCounter.getTaskId();
         checkRewardConditionTaskId = checkRewardCondition.getTaskId();
+        Bukkit.getPluginCommand("sor").setExecutor(new ReloadCommand());
     }
 
     @Override
