@@ -17,10 +17,10 @@ public class PlayerJoinListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) throws IOException {
         Player player = event.getPlayer();
         ConfigManager.createPlayerConfig(player);
-        ConfigManager.setLastLoginTime(player);
         if (isFirstJoinToday(player)) {
             ConfigManager.clearOnlineTime(player);
         }
+        ConfigManager.setLastLoginTime(player);
     }
 
     public boolean isFirstJoinToday(Player player) {
