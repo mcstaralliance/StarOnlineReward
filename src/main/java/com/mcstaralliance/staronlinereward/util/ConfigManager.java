@@ -47,6 +47,7 @@ public class ConfigManager {
     public static void clearOnlineTime(Player player) throws IOException {
         FileConfiguration data = getPlayerConfig(player);
         data.set("online_time", 0);
+        data.set("reward_stage", 0);
         data.save(getPlayerFile(player));
     }
 
