@@ -1,14 +1,14 @@
-package com.mcstaralliance.staronlinereward.task;
+package com.mcstaralliance.staronlinereward.quartz;
 
 import com.mcstaralliance.staronlinereward.util.ConfigManager;
-import org.bukkit.scheduler.BukkitRunnable;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
 
 import java.io.IOException;
 
-
-public class ClearDailyDataTask extends BukkitRunnable {
+public class ClearPlayersOnlineTimeJob implements Job {
     @Override
-    public void run() {
+    public void execute(JobExecutionContext context) {
         try {
             ConfigManager.clearPlayersOnlineTime();
         } catch (IOException e) {
@@ -16,3 +16,4 @@ public class ClearDailyDataTask extends BukkitRunnable {
         }
     }
 }
+
