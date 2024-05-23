@@ -11,8 +11,6 @@ import java.time.LocalDate;
 
 public class PlayerJoinListener implements Listener {
 
-    public StarOnlineReward plugin = StarOnlineReward.getInstance();
-
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) throws IOException {
         Player player = event.getPlayer();

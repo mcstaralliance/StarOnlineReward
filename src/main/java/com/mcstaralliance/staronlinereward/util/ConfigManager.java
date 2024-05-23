@@ -38,9 +38,11 @@ public class ConfigManager {
         return data.getInt("reward_stage");
     }
     public static void clearPlayersOnlineTime() throws IOException {
+        // 仅限凌晨清空任务使用
         List<Player> onlinePlayers = new ArrayList<>(Bukkit.getOnlinePlayers());
         for (Player player : onlinePlayers) {
             clearOnlineTime(player);
+            setLastLoginTime(player);
         }
     }
 
